@@ -1,7 +1,7 @@
 "use client";
 import Heading from "@/components/heading";
-import { MessageSquare } from "lucide-react";
-import React from "react";
+import {  MessageSquare } from "lucide-react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { formSchema } from "./constants";
@@ -9,8 +9,21 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import { ChatCompletionRequestMessage } from "openai";
+import axios from "axios";
+import Empty from "@/components/empty";
+import Loader from "@/components/loader";
+import { cn } from "@/lib/utils";
+import UserAvatar from "@/components/user-avatar";
+import BotAvatar from "@/components/bot-avatar";
 
 const ConservationPage = () => {
+
+  const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
+
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -19,8 +32,28 @@ const ConservationPage = () => {
   });
 
   const isLoading = form.formState.isSubmitting;
+
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    try {
+      const userMesage: ChatCompletionRequestMessage = {
+        role: "user",
+        content: values.prompt
+      };
+      const newMessages = [...messages, userMesage];
+
+      const response = await axios.post("/api/conversation", {
+        messages: newMessages
+      });
+      setMessages((current) => [...current, userMesage, response.data]);
+      form.reset();
+    } catch (error: any)
+    {
+      //TODO: open pro modal
+      console.log(error);
+      
+    } finally {
+      router.refresh();
+    }
   };
   return (
     <div>
@@ -43,21 +76,53 @@ const ConservationPage = () => {
                 render={({ field }) => (
                   <FormItem className="col-span-12 lg:col-span-10">
                     <FormControl className="m-0 p-0">
-                      <Input className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent" disabled={isLoading}
-                        placeholder="How do I calculate radius of a circle?"  {...field} />
+                      <Input
+                        className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
+                        disabled={isLoading}
+                        placeholder="How do I calculate radius of a circle?"
+                        {...field}
+                      />
                     </FormControl>
                   </FormItem>
                 )}
               />
-              <Button className="col-span-12 lg:col-span-2 w-full bg-black text-white" disabled={isLoading}>
+              <Button
+                className="col-span-12 lg:col-span-2 w-full bg-black text-white"
+                disabled={isLoading}
+              >
                 Generate
               </Button>
             </form>
           </Form>
         </div>
         <div className="space-y-4 mt-4">
-          Message content
+          {isLoading && (
+            <div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
+              <Loader />
+            </div>
+          )}
+          {messages.length === 0 && !isLoading && (
+            <div>
+              <Empty label="No conversation started" />
+            </div>
+          )}
+          <div className="flex flex-col-reverse gap-y-4">
+            {messages.map((message) => (
+              <div
+                key={message.content}
+                className={cn(
+                  "p-8 w-full flex items-start gap-x-8 rounded-lg",
+                  message.role === "user"
+                    ? "bg-white border border-black/10"
+                    : "bg-muted"
+                )}
+              >
+                {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
+                <p className="text-sm">{message.content}</p>
+              </div>
+            ))}
           </div>
+        </div>
       </div>
     </div>
   );

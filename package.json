@@ -9,8 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.31.2",
+    "@clerk/nextjs": "^4.21.15",
     "@hookform/resolvers": "^3.5.0",
+    "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
@@ -18,6 +19,7 @@
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "autoprefixer": "10.4.19",
+    "axios": "^1.7.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "eslint": "8.57.0",
@@ -25,6 +27,8 @@
     "i": "^0.3.7",
     "lucide-react": "^0.383.0",
     "next": "14.2.3",
+    "openai": "^3.3.0",
+    "openapi": "^1.0.1",
     "postcss": "8.4.38",
     "react": "18.3.1",
     "react-dom": "18.3.1",
