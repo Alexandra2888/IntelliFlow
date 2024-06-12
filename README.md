@@ -11,8 +11,6 @@ Welcome to **IntelliFlow**! This project is a Next.js application leveraging the
 - [Dependencies 📦](#dependencies-%F0%9F%93%A6)
 - [Features 🌟](#features-%F0%9F%8C%9F)
 - [Usage 📖](#usage-%F0%9F%93%96)
-- [Contributing 🤝](#contributing-%F0%9F%A4%9D)
-- [License 📄](#license-%F0%9F%93%84)
 
 ## Installation 🛠️
 
