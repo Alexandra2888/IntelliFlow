@@ -1,51 +1,64 @@
-IntelliFlow 🚀
-Welcome to IntelliFlow! This project is a Next.js application leveraging the power of OpenAI and Replicate to generate images, videos, code, and conversations. Dive in to explore the capabilities of AI in a seamless SaaS environment.
+# IntelliFlow 🚀
 
+Welcome to **IntelliFlow**! This project is a Next.js application leveraging the power of OpenAI and Replicate to generate images, videos, code, and conversations. Dive in to explore the capabilities of AI in a seamless SaaS environment.
 
-Table of Contents 📑
-Installation 🛠️
-Scripts 📜
-Dependencies 📦
-Features 🌟
-Usage 📖
-Contributing 🤝
-License 📄
-Installation 🛠️
+![Project Image](image-url-placeholder)
+
+## Table of Contents 📑
+
+- [Installation 🛠️](#installation-%F0%9F%9B%A0%EF%B8%8F)
+- [Scripts 📜](#scripts-%F0%9F%93%9C)
+- [Dependencies 📦](#dependencies-%F0%9F%93%A6)
+- [Features 🌟](#features-%F0%9F%8C%9F)
+- [Usage 📖](#usage-%F0%9F%93%96)
+- [Contributing 🤝](#contributing-%F0%9F%A4%9D)
+- [License 📄](#license-%F0%9F%93%84)
+
+## Installation 🛠️
+
 First, clone the repository:
 
-bash
-Copy code
-git clone https://github.com/yourusername/saas-ai.git
+```bash
+git clone https://github.com/yourusername/saas-ai.git```
+
 Navigate to the project directory and install the dependencies:
 
-bash
+```bash
 Copy code
 cd saas-ai
-npm install
-Scripts 📜
+npm install```
+
+## Scripts 📜
 Here are the available scripts you can run:
 
 Development: Start the development server with hot reload.
 
+```
 bash
 Copy code
 npm run dev
 Build: Create an optimized production build.
-
+```
+```
 bash
 Copy code
 npm run build
 Start: Start the production server.
-
+```
+```
 bash
 Copy code
 npm run start
 Lint: Run ESLint to find and fix problems in your code.
-
+```
+```
 bash
 Copy code
 npm run lint
-Dependencies 📦
+```
+
+
+## Dependencies 📦
 Here is a list of the main dependencies used in this project:
 
 Next.js: next - The React framework for production.
@@ -63,7 +76,9 @@ Conversation Generation: Engage in dynamic AI-driven conversations.
 Usage 📖
 To start using the application, run the development server:
 
+```
 bash
 Copy code
-npm run dev
+npm run dev```
+
 Open your browser and navigate to http://localhost:3000 to explore the features.
