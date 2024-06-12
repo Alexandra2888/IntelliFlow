@@ -2,7 +2,8 @@
 
 Welcome to **IntelliFlow**! This project is a Next.js application leveraging the power of OpenAI and Replicate to generate images, videos, code, and conversations. Dive in to explore the capabilities of AI in a seamless SaaS environment.
 
-![Project Image](image-url-placeholder)
+![image](https://github.com/Alexandra2888/IntelliFlow/assets/76844097/f882a4e1-5327-4403-afc2-1b6812abef0d)
+
 
 ## Table of Contents 📑
 
