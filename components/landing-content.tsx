@@ -2,31 +2,30 @@
 
 const testimonials = [
   {
-    name: "Alex",
-    avatar: "A",
-    title: "Software Engineer",
-    description:"This is the best tool I've used!"
+    name: "Jamal S.",
+    avatar: "J",
+    title: "Senior Software Engineer",
+    description: "This is the best application I've ever used!",
   },
   {
-    name: "Alex",
-    avatar: "A",
-    title: "Software Engineer",
-    description:"This is the best tool I've used!"
+    name: "Jorge J.",
+    avatar: "J",
+    title: "Culinary Operations Orchestration Specialist",
+    description: "It's so easy, even I could use it!",
   },
   {
-    name: "Alex",
-    avatar: "A",
-    title: "Software Engineer",
-    description:"This is the best tool I've used!"
+    name: "Isaac S.",
+    avatar: "I",
+    title: "Logistics Automation Technician",
+    description: "Couldn't have finished work without this!",
   },
   {
-    name: "Alex",
+    name: "Armando C.",
     avatar: "A",
-    title: "Software Engineer",
-    description:"This is the best tool I've used!"
-  }
-]
-
+    title: "Rail Transit Systems Maintenance Engineer",
+    description: "Was able to fix a railroad twice as fast with this tool!",
+  },
+];
 import React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 
