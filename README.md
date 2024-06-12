@@ -32,26 +32,21 @@ Here are the available scripts you can run:
 Development: Start the development server with hot reload.
 
 ```
-bash
-Copy code
 npm run dev
 Build: Create an optimized production build.
 ```
+
 ```
-bash
-Copy code
 npm run build
 Start: Start the production server.
 ```
+
 ```
-bash
-Copy code
 npm run start
 Lint: Run ESLint to find and fix problems in your code.
 ```
+
 ```
-bash
-Copy code
 npm run lint
 ```
 
@@ -75,8 +70,7 @@ Usage 📖
 To start using the application, run the development server:
 
 ```
-bash
-Copy code
-npm run dev```
+npm run dev
+```
 
 Open your browser and navigate to http://localhost:3000 to explore the features.
