@@ -54,19 +54,26 @@ npm run lint
 ## Dependencies 📦
 Here is a list of the main dependencies used in this project:
 
-Next.js: next - The React framework for production.
-React: react, react-dom - A JavaScript library for building user interfaces.
-TypeScript: typescript - JavaScript with syntax for types.
-Tailwind CSS: tailwindcss, tailwindcss-animate, tailwind-merge - Utility-first CSS framework.
-OpenAI API: openai - API client for OpenAI.
-Replicate: replicate - Interface for Replicate's models.
-Radix UI: Various Radix UI components like Avatar, Dialog, Label, Select, and Slot.
-Features 🌟
-Image Generation: Generate stunning images using AI.
-Video Generation: Create and manipulate videos with AI.
-Code Generation: Generate and refactor code snippets.
-Conversation Generation: Engage in dynamic AI-driven conversations.
-Usage 📖
+- Next.js: next - The React framework for production.
+  
+- React: react, react-dom - A JavaScript library for building user interfaces.
+  
+- TypeScript: typescript - JavaScript with syntax for types.
+  
+- Tailwind CSS: tailwindcss, tailwindcss-animate, tailwind-merge - Utility-first CSS framework.
+
+- OpenAI API: openai - API client for OpenAI.
+  
+- Replicate: replicate - Interface for Replicate's models.
+
+## Features 🌟
+
+- Image Generation: Generate stunning images using AI.
+- Video Generation: Create and manipulate videos with AI.
+- Code Generation: Generate and refactor code snippets.
+- Conversation Generation: Engage in dynamic AI-driven conversations.
+
+## Usage 📖
 To start using the application, run the development server:
 
 ```
