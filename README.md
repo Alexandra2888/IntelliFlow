@@ -16,15 +16,15 @@ Welcome to **IntelliFlow**! This project is a Next.js application leveraging the
 
 First, clone the repository:
 
-```bash
-git clone https://github.com/yourusername/saas-ai.git```
+
+```git clone https://github.com/yourusername/saas-ai.git```
 
 Navigate to the project directory and install the dependencies:
 
-```bash
-Copy code
+```
 cd saas-ai
-npm install```
+npm install
+```
 
 ## Scripts 📜
 Here are the available scripts you can run:
