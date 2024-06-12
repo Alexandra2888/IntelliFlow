@@ -18,7 +18,7 @@ Welcome to **IntelliFlow**! This project is a Next.js application leveraging the
 First, clone the repository:
 
 
-```git clone https://github.com/yourusername/saas-ai.git```
+```git clone https://github.com/Alexandra2888/saas-ai.git```
 
 Navigate to the project directory and install the dependencies:
 
