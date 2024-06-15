@@ -82,3 +82,6 @@ npm run dev
 ```
 
 Open your browser and navigate to http://localhost:3000 to explore the features.
+
+## Live:
+https://intelli-flow-4ailj1vg7-alexandra2888s-projects.vercel.app/
