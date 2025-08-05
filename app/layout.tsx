@@ -18,7 +18,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: undefined,
+      }}
+    >
       <html lang="en">
         <CrispProvider/>
           <body className={inter.className}>{children}</body>

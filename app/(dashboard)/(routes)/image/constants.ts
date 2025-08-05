@@ -34,14 +34,14 @@ export const amountOptions = [
 
 export const resolutionOptions = [
     {
-        value: "250x250",
-        label:"250x250"
-    },
-    {
         value: "512x512",
         label:"512x512"
     },
-{
+    {
+        value: "768x768",
+        label:"768x768"
+    },
+    {
         value: "1024x1024",
         label:"1024x1024"
     }

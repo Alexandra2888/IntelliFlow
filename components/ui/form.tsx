@@ -78,7 +78,7 @@ const FormItem = React.forwardRef<
 
   return (
     <FormItemContext.Provider value={{ id }}>
-      <div ref={ref} className={cn("space-y-2", className)} {...props} />
+      <div {...props} ref={ref} className={cn("space-y-2", className)} />
     </FormItemContext.Provider>
   )
 })
@@ -92,10 +92,10 @@ const FormLabel = React.forwardRef<
 
   return (
     <Label
+      {...props}
       ref={ref}
       className={cn(error && "text-destructive", className)}
       htmlFor={formItemId}
-      {...props}
     />
   )
 })
@@ -109,6 +109,7 @@ const FormControl = React.forwardRef<
 
   return (
     <Slot
+      {...props}
       ref={ref}
       id={formItemId}
       aria-describedby={
@@ -117,7 +118,6 @@ const FormControl = React.forwardRef<
           : `${formDescriptionId} ${formMessageId}`
       }
       aria-invalid={!!error}
-      {...props}
     />
   )
 })
@@ -131,10 +131,10 @@ const FormDescription = React.forwardRef<
 
   return (
     <p
+      {...props}
       ref={ref}
       id={formDescriptionId}
       className={cn("text-sm text-muted-foreground", className)}
-      {...props}
     />
   )
 })
@@ -153,10 +153,10 @@ const FormMessage = React.forwardRef<
 
   return (
     <p
+      {...props}
       ref={ref}
       id={formMessageId}
       className={cn("text-sm font-medium text-destructive", className)}
-      {...props}
     >
       {body}
     </p>

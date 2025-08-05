@@ -10,7 +10,6 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { ChatCompletionRequestMessage } from "openai";
 import axios from "axios";
 import Empty from "@/components/empty";
 import Loader from "@/components/loader";
@@ -19,9 +18,14 @@ import UserAvatar from "@/components/user-avatar";
 import BotAvatar from "@/components/bot-avatar";
 import ReactMarkDown from "react-markdown";
 
+type Message = {
+  role: "user" | "assistant" | "system";
+  content: string;
+};
+
 const CodePage = () => {
 
-  const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
 
   const router = useRouter();
 
@@ -36,16 +40,16 @@ const CodePage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const userMesage: ChatCompletionRequestMessage = {
+      const userMessage: Message = {
         role: "user",
         content: values.prompt
       };
-      const newMessages = [...messages, userMesage];
+      const newMessages = [...messages, userMessage];
 
       const response = await axios.post("/api/code", {
         messages: newMessages
       });
-      setMessages((current) => [...current, userMesage, response.data]);
+      setMessages((current) => [...current, userMessage, response.data]);
       form.reset();
     } catch (error: any)
     {
