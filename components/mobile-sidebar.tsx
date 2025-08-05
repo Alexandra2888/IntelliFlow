@@ -17,7 +17,7 @@ const MobileSidebar = () => {
   return (
     <Sheet>
       <SheetTrigger>
-        <Button variant="ghost" size="icon">
+        <Button variant="ghost" size="icon" asChild>
           <Menu className="md:hidden" />
         </Button>
           </SheetTrigger>

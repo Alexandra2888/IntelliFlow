@@ -10,7 +10,6 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { ChatCompletionRequestMessage } from "openai";
 import axios from "axios";
 import Empty from "@/components/empty";
 import Loader from "@/components/loader";
@@ -18,9 +17,14 @@ import { cn } from "@/lib/utils";
 import UserAvatar from "@/components/user-avatar";
 import BotAvatar from "@/components/bot-avatar";
 
+type Message = {
+  role: "user" | "assistant" | "system";
+  content: string;
+};
+
 const ConservationPage = () => {
 
-  const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
 
   const router = useRouter();
 
@@ -35,16 +39,16 @@ const ConservationPage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const userMesage: ChatCompletionRequestMessage = {
+      const userMessage: Message = {
         role: "user",
         content: values.prompt
       };
-      const newMessages = [...messages, userMesage];
+      const newMessages = [...messages, userMessage];
 
       const response = await axios.post("/api/conversation", {
         messages: newMessages
       });
-      setMessages((current) => [...current, userMesage, response.data]);
+      setMessages((current) => [...current, userMessage, response.data]);
       form.reset();
     } catch (error: any)
     {

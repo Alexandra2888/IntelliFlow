@@ -8,11 +8,11 @@ const UserAvatar = () => {
     return null; 
   }
 
-  const { profileImageUrl, firstName, lastName } = user;
+  const { imageUrl, firstName, lastName } = user;
 
   return (
     <Avatar className="w-8 h-8">
-      <AvatarImage src={profileImageUrl}/>
+      <AvatarImage src={imageUrl}/>
       <AvatarFallback>
         {firstName?.charAt(0)}
         {lastName?.charAt(0)}

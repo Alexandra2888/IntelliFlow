@@ -1,46 +1,66 @@
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
-import { Configuration, OpenAIApi,  } from "openai";
+import Replicate from "replicate";
 
-const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
+const replicate = new Replicate({
+    auth: process.env.REPLICATE_API_TOKEN,
 });
 
-const openai = new OpenAIApi(configuration);
-
-export async function POST(
-    req: Request,
-    res: Response
-) {
+export async function POST(req: Request) {
     try {
-        const userId = auth();
+        const { userId } = await auth();
         const body = await req.json();
-        const { prompt, amount=1,  resolution="512x512"} = body;
+        const { prompt, amount = 1, resolution = "512x512" } = body;
+        
+        console.log("[IMAGE_REQUEST_BODY]", body);
         
         if (!userId) {
-            return new NextResponse("Unauthorized", {status:401})
+            return new NextResponse("Unauthorized", { status: 401 });
         }
-        if (!configuration.apiKey) {
-            return new NextResponse("OpenAI API key not configured", {status:500})
+        if (!process.env.REPLICATE_API_TOKEN) {
+            return new NextResponse("Replicate API token not configured", { status: 500 });
         }
         if (!prompt) {
-            return new NextResponse("Prompt is required", {status:400})
+            return new NextResponse("Prompt is required", { status: 400 });
         }
-         if (!amount) {
-            return new NextResponse("Amount is required", {status:400})
-        }
-         if (!resolution) {
-            return new NextResponse("Resolution is required", {status:400})
-        }
-        const response = await openai.createImage({
-            prompt,
-            n: parseInt(amount, 10),
-            size: resolution
-        });
-        return NextResponse.json(response.data.data);
-    } catch (error) {
-        console.log("[IMAGE_ERROR", error);
-        return new NextResponse
         
+        // Parse resolution to get width and height
+        const [width, height] = resolution.split('x').map(Number);
+        
+        console.log("[IMAGE_PARSED_RESOLUTION]", { resolution, width, height });
+        
+        // Temporarily remove validation to debug
+        console.log("[IMAGE_GENERATION]", { prompt, amount, resolution, width, height });
+        
+        const response = await replicate.run(
+            "stability-ai/sdxl:39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b",
+            {
+                input: {
+                    prompt: prompt,
+                    width: width,
+                    height: height,
+                    num_outputs: parseInt(amount, 10),
+                    scheduler: "K_EULER",
+                    num_inference_steps: 30,
+                    guidance_scale: 7.5,
+                }
+            }
+        );
+        
+        console.log("[IMAGE_RESPONSE]", response);
+        
+        // Format response to match frontend expectations
+        const formattedResponse = Array.isArray(response) 
+            ? response.map((url: string) => ({ url }))
+            : [{ url: response }];
+        
+        return NextResponse.json(formattedResponse);
+    } catch (error) {
+        console.log("[IMAGE_ERROR]", error);
+        console.log("[IMAGE_ERROR_DETAILS]", {
+            message: error instanceof Error ? error.message : 'Unknown error',
+            stack: error instanceof Error ? error.stack : undefined
+        });
+        return new NextResponse("Internal Error", { status: 500 });
     }
 }
