@@ -28,7 +28,7 @@
     "eslint-config-next": "^15.2.2",
     "i": "^0.3.7",
     "lucide-react": "^0.468.0",
-    "next": "^15.4.5",
+    "next": "15.4.10",
     "openai": "^4.68.0",
     "openapi": "^1.0.1",
     "postcss": "^8.5.0",
